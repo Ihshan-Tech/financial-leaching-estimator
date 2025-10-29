@@ -14,6 +14,8 @@ const CURRENCIES = {
 }
 
 export default function LeachingCalculator() {
+  const [name, setName] = useState("")
+  const [date, setDate] = useState("")
   const [totalAmount, setTotalAmount] = useState("")
   const [years, setYears] = useState("")
   const [rate, setRate] = useState("")
@@ -99,6 +101,8 @@ export default function LeachingCalculator() {
   }
 
   const handleReset = () => {
+    setName("")
+    setDate("")
     setTotalAmount("")
     setYears("")
     setRate("")
@@ -146,7 +150,7 @@ export default function LeachingCalculator() {
     const content = `
       <html>
         <head>
-          <title>Leaching Calculator Report</title>
+          <title>Leaching Calculation Report</title>
           <style>
             body { font-family: Arial, sans-serif; margin: 20px; color: #333; }
             h1 { color: #1e40af; border-bottom: 2px solid #1e40af; padding-bottom: 10px; }
@@ -161,9 +165,11 @@ export default function LeachingCalculator() {
           </style>
         </head>
         <body>
-          <h1>Monthly Leaching Amount Calculator Report</h1>
+          <h1>Monthly Leaching Amount Calculation Report</h1>
           
           <div class="details">
+            <p><strong>Owner Name:</strong> ${name}</p>
+            <p><strong>Leaching Start Date:</strong> ${date}</p>
             <p><strong>Currency:</strong> ${currencyInfo.name} (${currencyInfo.code})</p>
             <p><strong>Total Amount:</strong> ${currencyInfo.symbol}${Number.parseFloat(totalAmount).toFixed(2)}</p>
             <p><strong>Number of Years:</strong> ${years}</p>
@@ -221,6 +227,25 @@ export default function LeachingCalculator() {
         {/* Main Card */}
         <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-6">
           {/* Input Section */}
+           <label className="block text-sm font-semibold text-slate-700 mb-2">
+                Owner Name 
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter Your Name"
+                className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors text-base"
+              />
+               <label className="block text-sm font-semibold text-slate-700 mb-2">
+               Leacing Start Date
+              </label>
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors text-base"
+              />
           <div className="space-y-6 mb-8">
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-2">Currency</label>
